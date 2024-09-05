@@ -10,15 +10,23 @@ import requests
 
 static_URL = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&fields=items/contentDetails/videoId,nextPageToken&key={}&playlistId={}&pageToken='
 
-api_key = 'AIzaSyAV5YZSF68n_kJi5JywH37dJZWO__vmYo4' # os.environ.get('YT_API_KEY')
+api_key = 'AIzaSyCYIU3i74rWF1ex3ebLUXMRbIkJArL0EOE'
+
+
+
+
+
+
+
+ # os.environ.get('YT_API_KEY')
 print("Api Key", api_key)
 
-youtube = build('youtube', 'v3', developerKey=api_key)
+youtube = build('youtube', 'v3', developerKey = api_key)
 
 # To get the playlistId from the link
 def pl_id(playlist_link):
     # Regex
-    p_link = re.compile('^([\S]+list=)?([\w_-]+)[\S]*$')
+    p_link = re.compile(r'^([\S]+list=)?([\w_-]+)[\S]*$')
     m_link = p_link.match(playlist_link)
     if m_link:
         return m_link.group(2)
@@ -64,9 +72,9 @@ def home():
     nextPageToken = None
     next_page = ''   
     chart_data = [ [], [] ]
-    # Palyist REquest -> Vid ID
+    # Playist REquest -> Vid ID
     # for each Vid ID
-    #       ConteentDetials -> duration
+    #       ContentDetials -> duration
     #       snippet -> Title
     while True:
 
