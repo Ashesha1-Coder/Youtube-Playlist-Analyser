@@ -1,8 +1,11 @@
 services:
   app:
     build: .
-    container_name: python-server
-    command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+    container_name: ytplaylistanalyser
+    command: gunicorn --reload -b 0.0.0.0:80 src.main:app
     ports:
-      - 80:80
-      - 5678:5678
+      - "80:80"
+    volumes:
+      - .:/code
+    # Add any other necessary environment variables or configurations here
+    # Optionally, configure volume settings here if needed
