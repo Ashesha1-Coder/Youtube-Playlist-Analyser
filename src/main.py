@@ -4,7 +4,7 @@ import re
 from datetime import timedelta
 from googleapiclient.discovery import build
 from flask import Flask, Response, request, render_template, url_for
-import requests
+import requests 'AIzaSyCYIU3i74rWF1ex3ebLUXMRbIkJArL0EOE'
 
 class YouTubeAPI:
     def __init__(self, api_key):
@@ -62,13 +62,14 @@ def get_playlist():
 if __name__ == '__main__':
     app.run(debug=True)
 
-import json
-import re
-from datetime import timedelta
-from googleapiclient.discovery import build
-from flask import Flask, Response, request, render_template
-import requests
 
+# Define your API key
+api_key =  'AIzaSyCYIU3i74rWF1ex3ebLUXMRbIkJArL0EOE'
+
+# Create an instance of the YouTubeAPI class with the API key
+youtube_api = YouTubeAPI(api_key)
+
+# 
 class YouTubeAPI:
     def __init__(self, api_key):
         self.api_key = api_key
