@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # copy the src to the folder
 COPY ./src ./src
-
+COPY .env .env
 # start the server
-CMD ["gunicorn", "--reload", "-b", "0.0.0.0:80", "src.main:app"]
+CMD ["gunicorn", "--reload", "-b", "0.0.0.0:80", "src.main:app" ,"python" ,"main.py"]
+ENV PATH="/usr/local/bin/python:${PATH}"
+
