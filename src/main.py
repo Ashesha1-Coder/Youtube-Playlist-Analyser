@@ -1,6 +1,14 @@
 import json
 import os
 import re
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_key = os.getenv('api_key')
+
+
 from datetime import timedelta
 from googleapiclient.discovery import build
 from flask import Flask, Response, request, render_template, url_for
@@ -8,7 +16,7 @@ import requests
 # URL pattern for fetching Youtube playlist details
 static_URL = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&fields=items/contentDetails/videoId,nextPageToken&key={}&playlistId={}&pageToken='
 # Youtube Data API Key
-api_key = 'AIzaSyCYIU3i74rWF1ex3ebLUXMRbIkJArL0EOE'
+
 # Initialize Youtube API Client using the API key
 
 youtube = build('youtube', 'v3', developerKey = api_key)
@@ -189,20 +197,3 @@ if __name__ == "__main__":
 
 
 
-# Sure, I'd be happy to explain this Python regular expression to you!
-
-# This regular expression `^([\S]+list=)?([\w_-]+)[\S]*$` can be broken down as follows:
-
-# - `^` : This asserts the start of a line.
-# - `([\S]+list=)?` : This is a group that matches one or more non-whitespace characters (`[\S]+`) followed by the
-#  string 'list='. The question mark at the end makes this group optional, meaning it will match lines with or without this pattern.
-# - `([\w_-]+)` : This is another group that matches one or more word characters (which include alphanumeric 
-# characters and underscores) or hyphens.
-# - `[\S]*` : This matches zero or more non-whitespace characters.
-# - `$` : This asserts the end of a line.
-
-# So, in summary, this regular expression will match any line that optionally 
-# starts with one or more non-whitespace characters followed by 'list=', then 
-# has one or more word characters or hyphens, and ends with zero or more non-whitespace 
-# characters. The two groups in parentheses are capturing groups, which means the portions 
-# of the input they match will be saved for later use.
