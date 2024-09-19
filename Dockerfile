@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 # copy the src to the folder
 COPY ./src ./src
 
+<<<<<<< HEAD
 # Copy the JSON key file
 COPY secrets/credentials.json /app/secrets/credentials.json
 
@@ -19,6 +20,8 @@ COPY secrets/credentials.json /app/secrets/credentials.json
 ENV GOOGLE_APPLICATION_CREDENTIALS="/app/secrets/credentials.json"
 
 
+=======
+>>>>>>> 0069c00e48389aa1d29fe45ba144c5aeee3c1d0b
 # start the server
 CMD ["gunicorn", "--reload", "-b", "0.0.0.0:80", "src.main:app" ,"python" ,"main.py"]
 
