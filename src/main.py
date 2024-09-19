@@ -1,17 +1,16 @@
 import os
 import re
-import json
 from datetime import timedelta
 from googleapiclient.discovery import build
 from flask import Flask, request, render_template
-import v.env
+import requests
 
-load_dotenv()
+YT_API_KEY = os.environ.get('YT_API_KEY')
 
 class YouTubeAPI:
     def __init__(self, api_key):
         self.api_key = api_key
-        self.youtube = build('youtube', 'v3', developerKey=api_key)
+        self.youtube = build('youtube', 'v3', developerKey=self.api_key)
         self.static_URL = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&fields=items/contentDetails/videoId,nextPageToken&key={}&playlistId={}&pageToken='
 
     def get_playlist_id(self, playlist_link):
@@ -125,7 +124,8 @@ def home():
         return render_template("home.html")
     else:
         user_link = request.form.get('search_string').strip()
-        youtube_api = YouTubeAPI(api_key=os.getenv('api_key'))
+        # TODO Check if we will make a new object
+        youtube_api = YouTubeAPI(api_key=YT_API_KEY)
         processor = PlaylistProcessor(youtube_api)
         result = processor.process_playlist(user_link)
         if isinstance(result, list):

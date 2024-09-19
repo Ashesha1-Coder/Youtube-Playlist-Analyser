@@ -5,7 +5,7 @@ services:
     command: gunicorn --reload -b 0.0.0.0:80 src.main:app
     ports:
       - "80:80"
+    env_file:
+      - .env
     volumes:
       - .:/code
-    # Add any other necessary environment variables or configurations here
-    # Optionally, configure volume settings here if needed
